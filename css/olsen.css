@@ -29,3 +29,40 @@ details.faq summary{font-weight:800;cursor:pointer}
 .band{background:#e9e5de;color:var(--ink)}
 .lab .pill{background:#1d2a38;color:#5fe3ff}
 .hero{min-height:620px}
+/* === Runde 1: Argon-inspirert designspråk (Argon Design System © Creative Tim, MIT). Egen CSS, ingen kode kopiert. === */
+:root{--g:#f5603a;--g2:#d9481f;--o:#fbb140;--ink:#172b4d;--muted:#525f7f;--s:#f8f9fe;--r:.6rem;
+ --sh:0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);--sh-lg:0 50px 100px rgba(50,50,93,.1),0 15px 35px rgba(50,50,93,.15),0 5px 15px rgba(0,0,0,.1);
+ --grad:linear-gradient(87deg,#fb6340 0,#fbb140 100%);--grad-d:linear-gradient(150deg,#172b4d 15%,#1a174d 70%,#2a1f5c 94%)}
+body{background:var(--s);color:var(--muted);font-family:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{color:var(--ink);font-family:inherit;font-weight:700;letter-spacing:-.01em}
+.hero h1,.hero p{color:#fff}
+.hero:after{background:linear-gradient(150deg,rgba(23,43,77,.92) 15%,rgba(26,23,77,.65) 60%,rgba(251,99,64,.25))}
+.kicker{background:rgba(251,99,64,.12);color:#d9481f;text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}
+.hero .kicker{background:rgba(255,255,255,.15);color:#fff}
+.btn{background:var(--grad);box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);border-radius:.4rem;letter-spacing:.025em;text-transform:none;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);background:var(--grad)}
+.btn.ghost{background:#fff;color:var(--ink)!important}
+.btn.alt{background:linear-gradient(87deg,#172b4d,#1a174d)}
+.card{background:#fff;border:0;border-radius:var(--r);box-shadow:var(--sh);transition:transform .25s ease,box-shadow .25s ease}
+a.card:hover,.card.hov:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+a.card{text-decoration:none;color:var(--muted)}
+.icon-shape{width:48px;height:48px;border-radius:50%;display:inline-grid;place-items:center;background:var(--grad);color:#fff;font-size:1.3rem;box-shadow:0 4px 6px rgba(50,50,93,.11);margin-bottom:10px}
+.band{background:#fff}
+.stats>div{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:22px}
+.stats b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lab{background:var(--grad-d)}
+.lab .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.lab .kicker{background:rgba(17,205,239,.15);color:#11cdef}
+.steps li{box-shadow:var(--sh)}.steps li:before{background:var(--grad)}
+details.faq{box-shadow:var(--sh);transition:box-shadow .2s}details.faq[open]{box-shadow:var(--sh-lg)}
+details.faq summary{color:var(--ink);list-style:none}details.faq summary:after{content:"+";float:right;transition:transform .2s}details.faq[open] summary:after{transform:rotate(45deg)}
+input,select,textarea{border-radius:.375rem;border:1px solid #dee2e6;transition:box-shadow .15s,border-color .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:#fbb140;box-shadow:0 3px 9px rgba(50,50,9,0),3px 4px 8px rgba(251,99,64,.15)}
+:focus-visible{outline:3px solid #11cdef;outline-offset:2px}
+.ex{background:#fdd1da;color:#b0123a}
+header.top{box-shadow:0 1px 10px rgba(50,50,93,.08)}
+.concept{background:#172b4d}
+footer.band{background:#172b4d;color:#c8d1e3}footer.band a{color:#fbb140}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media (max-width:760px){section{padding:48px 0}.hero{min-height:540px}.hero h1{font-size:2rem}.stats{grid-template-columns:1fr 1fr}.grid.g2,.grid.g3{grid-template-columns:1fr}#meny{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 20px;box-shadow:var(--sh)}#meny.on{display:flex}.burger{display:block}}
