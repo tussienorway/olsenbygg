@@ -21,9 +21,15 @@ window.TJENESTER=[
 ];
 /* Priser i verktøyene er GROVE EKSEMPELTALL for estimat – ikke Olsenbyggs priser. */
 window.MATERIALER={
- belegningsstein:{navn:"Belegningsstein",enhet:"m²",pr:1,svinn:.08,pris:650,tekstur:"stein"},
- hekk:{navn:"Hekkplanter",enhet:"stk",pr:3,svinn:.05,pris:120,tekstur:"hekk",lopende:true},
- terrasse:{navn:"Terrassebord",enhet:"lm",pr:8.3,svinn:.1,pris:45,tekstur:"tre"},
- plen:{navn:"Ferdigplen",enhet:"m²",pr:1,svinn:.05,pris:110,tekstur:"plen"},
- stottemur:{navn:"Støttemur (blokk)",enhet:"stk",pr:8,svinn:.05,pris:85,tekstur:"mur",lopende:true}
+ belegningsstein:{navn:"Belegningsstein",enhet:"m²",pr:1,svinn:.08,pris:650,tekstur:"stein",farge:"#8d8f93"},
+ skifer:{navn:"Skiferheller",enhet:"m²",pr:1,svinn:.12,pris:900,tekstur:"skifer",farge:"#4b5560"},
+ grus:{navn:"Grus/pukk (0,1 m lag)",enhet:"m³",pr:.1,svinn:.1,pris:450,tekstur:"grus",farge:"#b3a58c"},
+ plen:{navn:"Ferdigplen",enhet:"m²",pr:1,svinn:.05,pris:110,tekstur:"plen",farge:"#4f8a2f"},
+ terrasse:{navn:"Terrassebord (tre)",enhet:"lm",pr:8.3,svinn:.1,pris:45,tekstur:"tre",farge:"#a8743f"},
+ kompositt:{navn:"Komposittbord",enhet:"lm",pr:7.2,svinn:.08,pris:120,tekstur:"kompositt",farge:"#5d5550"},
+ betong:{navn:"Betongheller",enhet:"m²",pr:1,svinn:.06,pris:380,tekstur:"heller",farge:"#a7a8a3"},
+ hekk:{navn:"Hekkplanter",enhet:"stk",pr:3,svinn:.05,pris:120,tekstur:"hekk",farge:"#2e5d22",lopende:true},
+ stottemur:{navn:"Støttemur (blokk)",enhet:"stk",pr:8,svinn:.05,pris:85,tekstur:"mur",farge:"#9a9a95",lopende:true},
+ kantstein:{navn:"Kantstein",enhet:"stk",pr:1,svinn:.05,pris:95,tekstur:"kant",farge:"#c9c9c4",lopende:true},
+ gjerde:{navn:"Tregjerde",enhet:"lm",pr:1,svinn:.05,pris:600,tekstur:"gjerde",farge:"#c8b08a",lopende:true}
 };

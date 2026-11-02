@@ -66,3 +66,15 @@ footer.band{background:#172b4d;color:#c8d1e3}footer.band a{color:#fbb140}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 @media (max-width:760px){section{padding:48px 0}.hero{min-height:540px}.hero h1{font-size:2rem}.stats{grid-template-columns:1fr 1fr}.grid.g2,.grid.g3{grid-template-columns:1fr}#meny{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 20px;box-shadow:var(--sh)}#meny.on{display:flex}.burger{display:block}}
+/* Runde 2: Sci-Fi Lab */
+.sone{display:grid;grid-template-columns:auto 1fr 110px auto;gap:8px;align-items:end;padding:10px;border-radius:.5rem;margin:6px 0;background:rgba(255,255,255,.04);border:1px solid transparent;transition:border-color .2s,background .2s}
+.sone.on{border-color:#11cdef;background:rgba(17,205,239,.08)}
+.sone label{margin:0;font-size:.78rem}.sone .sel{background:none;border:0;color:#11cdef;font-weight:800;cursor:pointer;padding:10px 4px}
+.sone .x{background:none;border:0;color:#f5365c;font-size:1.1rem;cursor:pointer;padding:10px}
+.tbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.tbar .btn{padding:7px 14px;font-size:.85rem;margin:0}
+.lab .btn.ghost{background:rgba(255,255,255,.1);color:#fff!important;border:1px solid rgba(255,255,255,.25)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+.big{float:right;font-size:1.4rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.est tr.sum th{font-size:1.05rem;border-top:2px solid #fb6340}
+.lab .est{color:#dfe8f1}.lab .est th{color:#fff}
+@media(max-width:760px){.sone{grid-template-columns:1fr 1fr}.sone select{grid-column:1/-1}}

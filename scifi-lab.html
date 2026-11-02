@@ -5,15 +5,14 @@
 <div class="grid g2" id="vis">
 <div class="card"><h2>1 · Tomt og valg</h2>
 <label for="foto">Bilde av eiendommen</label><input type="file" id="foto" accept="image/*">
-<label for="areal">Areal (m²)</label><input type="number" id="areal" min="1" value="40">
-<label for="lop">Løpemeter kant (hekk/mur), m</label><input type="number" id="lop" min="0" value="12">
-<p><b>Hva vil du se?</b></p><div class="chk" id="valg"></div>
+<p><b>Soner</b> – én sone per materiale. Velg sone, klikk i bildet for å sette punkter, dra punkter for å flytte, dobbeltklikk for å slette et punkt.</p>
+<div id="soner"></div><button type="button" class="btn ghost" id="nysone">+ Ny sone</button>
 <p style="margin-top:14px"><label>Modus</label><select id="modus"><option value="demo">Demo (lokalt, uten nøkkel)</option><option value="ai">Grok-bilde-KI via proxy</option></select></p>
 <p class="fsmall" id="modusinfo"></p>
-<button class="btn" id="kjor">Visualiser</button> <button class="btn ghost" id="nullstill">Nullstill markering</button></div>
-<div class="card"><h2>2 · Resultat</h2><p class="fsmall">Klikk i bildet for å markere hjørnene i området (minst 3 punkter).</p>
+<button class="btn" id="kjor">Visualiser</button> </div>
+<div class="card"><h2>2 · Resultat</h2><div class="tbar"><button type="button" class="btn ghost" id="angre">Angre punkt</button><button type="button" class="btn ghost" id="nullstill">Tøm sone</button><button type="button" class="btn ghost" id="forEtter" title="Hold inne for å se originalen">Hold: før</button><button type="button" class="btn ghost" id="last">Last ned PNG</button></div>
 <canvas id="vcanvas" width="960" height="720" aria-label="Visualisering av tomta"></canvas>
 <p id="vstatus" aria-live="polite"></p><span class="pill">KI-/demo-illustrasjon</span></div></div>
-<div class="card" id="mengde" style="margin-top:20px"><h2>3 · Mengde og grovestimat</h2><table class="est" id="esttab"></table><p class="fsmall">Eksempelpriser inkl. mva for materialer, uten arbeid, graving og frakt. Kun estimat.</p><a class="btn" href="./#kontakt">Bestill gratis befaring</a></div>
+<div class="card" id="mengde" style="margin-top:20px"><h2>3 · Mengde og grovestimat <span class="big" id="sumbig" aria-live="polite"></span></h2><table class="est" id="esttab"></table><p class="fsmall">Eksempelpriser inkl. mva for materialer, uten arbeid, graving og frakt. Kun estimat.</p><a class="btn" href="./#kontakt">Bestill gratis befaring</a></div>
 </div></section></main><footer class="band" style="background:#0b1118"><div class="wrap fsmall">Uavhengig konsept – ikke godkjent av Olsenbygg. <a href="personvern.html">Personvern</a></div></footer>
 <script src="js/data.js" defer></script><script src="js/ai-config.js" defer></script><script src="js/visualiser.js" defer></script></body></html>
