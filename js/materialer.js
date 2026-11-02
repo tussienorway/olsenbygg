@@ -366,6 +366,61 @@
     vis();
   };
 
+
+  // CSV-import: semikolon, anførselstegn, BOM og æøå (UTF-8)
+  const parseCSV = txt => {
+    txt = txt.replace(/^\ufeff/, '');
+    const rows = []; let row = [], f = '', q = false;
+    for (let i = 0; i < txt.length; i++) {
+      const c = txt[i];
+      if (q) {
+        if (c === '"') { if (txt[i + 1] === '"') { f += '"'; i++; } else q = false; }
+        else f += c;
+      } else if (c === '"') q = true;
+      else if (c === ';') { row.push(f); f = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && txt[i + 1] === '\n') i++;
+        row.push(f); rows.push(row); row = []; f = '';
+      } else f += c;
+    }
+    if (f !== '' || row.length) { row.push(f); rows.push(row); }
+    return rows.filter(r => r.length > 1 || (r[0] || '').trim());
+  };
+  window.__parseCSV = parseCSV;
+
+  const importer = txt => {
+    const rows = parseCSV(txt).filter(r => !String(r[0]).startsWith('#'));
+    if (!rows.length || rows[0][0] !== 'Kategori' || rows[0].length < 7) throw Error('Ukjent format – bruk en fil eksportert herfra (semikolon-separert).');
+    const lager = [], best = [];
+    rows.slice(1).forEach(r => {
+      if (r[0] === 'Lager' && r[1]) lager.push({ navn: r[1], prosjekt: r[2] === '-' ? '' : r[2], lager: Number(String(r[3]).replace(',', '.')), enhet: r[4], min: Number(String(r[5]).replace(',', '.')) });
+      else if (r[0] === 'Bestilling' && r[1]) best.push({ navn: r[1], lev: r[2] === '-' ? '' : r[2], ant: Number(String(r[3]).replace(',', '.')), enhet: r[4], dato: r[5] === '-' ? '' : r[5], status: r[6] });
+    });
+    if (!lager.length && !best.length) throw Error('Fant ingen rader å importere.');
+    const ny = rensTilstand({ lager, best, hist: d.hist });
+    d = ny;
+    return [lager.length, best.length];
+  };
+
+  const csvInn = $('#csvinn');
+  if (csvInn) csvInn.addEventListener('change', e => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    if (f.size > 2 * 1048576) { meld('Filen er for stor (maks 2 MB).'); e.target.value = ''; return; }
+    const fr = new FileReader();
+    fr.onload = () => {
+      try {
+        const [l, b] = importer(String(fr.result));
+        logg(`Importerte CSV (${l} lager, ${b} bestillinger)`);
+        meld(`Importerte ${l} lagerrader og ${b} bestillinger fra ${f.name}.`);
+        lagre();
+      } catch (err) { meld('Import feilet: ' + err.message); }
+      e.target.value = '';
+    };
+    fr.onerror = () => meld('Kunne ikke lese filen.');
+    fr.readAsText(f, 'utf-8');
+  });
+
   $('#reset').onclick = () => {
     d = EKS();
     bestFilter = 'alle';

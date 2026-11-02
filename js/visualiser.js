@@ -530,30 +530,64 @@
     });
   }
 
+  const MAKS_MB = 25, MAKS_PX = 2000;
+  const TYPER = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/bmp'];
+  const vst = t => { $('#vstatus').textContent = t; };
+
   $('#last').onclick = () => {
-    const a = document.createElement('a');
-    a.download = 'tomt-illustrasjon.png';
-    a.href = cv.toDataURL('image/png');
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => a.remove(), 100);
-    $('#vstatus').textContent = 'PNG-illustrasjon lastet ned (tomt-illustrasjon.png).';
+    if (!img) { vst('Last opp et bilde eller velg eksempeltomt før du laster ned PNG.'); return; }
+    try {
+      const a = document.createElement('a');
+      a.download = 'tomt-illustrasjon.png';
+      a.href = cv.toDataURL('image/png');
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => a.remove(), 100);
+      vst('PNG-illustrasjon lastet ned (tomt-illustrasjon.png).');
+    } catch (err) {
+      vst('Kunne ikke lage PNG (' + err.message + '). Prøv et annet bilde.');
+    }
+  };
+
+  // Skaler ned store bilder slik at canvas og minne holder
+  const skaler = src => {
+    if (Math.max(src.naturalWidth, src.naturalHeight) <= MAKS_PX) return src;
+    const k = MAKS_PX / Math.max(src.naturalWidth, src.naturalHeight);
+    const c = document.createElement('canvas');
+    c.width = Math.round(src.naturalWidth * k); c.height = Math.round(src.naturalHeight * k);
+    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+    return c;
   };
 
   $('#foto').addEventListener('change', e => {
     const f = e.target.files && e.target.files[0];
     if (!f) return;
-    const fr = new FileReader();
-    fr.onload = () => {
-      const i = new Image();
-      i.onload = () => {
-        img = i;
-        tegn();
-        $('#vstatus').textContent = `Eget bilde lastet inn (${f.name}). Dra i punktene for å tilpasse sonene.`;
-      };
-      i.src = fr.result;
+    if (!TYPER.includes(f.type)) {
+      e.target.value = '';
+      vst(`Filtypen støttes ikke (${f.name}). Bruk JPG, PNG, WebP eller GIF.`);
+      return;
+    }
+    if (f.size > MAKS_MB * 1024 * 1024) {
+      e.target.value = '';
+      vst(`Bildet er for stort (${(f.size / 1048576).toFixed(1)} MB). Maks ${MAKS_MB} MB.`);
+      return;
+    }
+    vst('Laster inn bilde …');
+    const url = URL.createObjectURL(f);
+    const i = new Image();
+    i.onload = () => {
+      const stor = Math.max(i.naturalWidth, i.naturalHeight) > MAKS_PX;
+      img = skaler(i);
+      URL.revokeObjectURL(url);
+      tegn();
+      vst(`Eget bilde lastet inn (${f.name})${stor ? ', skalert ned til maks ' + MAKS_PX + ' px' : ''}. Dra i punktene for å tilpasse sonene.`);
     };
-    fr.readAsDataURL(f);
+    i.onerror = () => {
+      URL.revokeObjectURL(url);
+      e.target.value = '';
+      vst(`Kunne ikke lese bildet (${f.name}). Filen kan være skadet.`);
+    };
+    i.src = url;
   });
 
   const eksBtn = $('#eksempelbilde');
@@ -565,6 +599,7 @@
         tegn();
         $('#vstatus').textContent = 'Eksempeltomt (KI-illustrasjon) lastet inn.';
       };
+      d.onerror = () => vst('Kunne ikke laste eksempeltomta.');
       d.src = 'img/for-tomt.webp';
     };
   }

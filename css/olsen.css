@@ -707,3 +707,5 @@ details.faq[open] summary::after {
     grid-template-columns: 1fr;
   }
 }
+label:has(+#csvinn:focus-visible){outline:3px solid #0b57d0;outline-offset:2px}
+.stats>div{min-width:0}.stats b{overflow-wrap:anywhere}@media(max-width:420px){.stats b{font-size:1.5rem}}

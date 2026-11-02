@@ -113,18 +113,17 @@
     });
   }));
 
-  // 6. Kart ved forespørsel
-  const vk = $('#vis-kart');
-  if (vk && window.FIRMA) {
-    vk.addEventListener('click', () => {
-      const [la, lo] = window.FIRMA.geo;
-      $('#kart').innerHTML = `<iframe title="Kart over Olsenbygg Grimstad AS, Industriveien 15" width="100%" height="300" style="border:0;border-radius:12px" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${lo - 0.01},${la - 0.005},${lo + 0.01},${la + 0.005}&marker=${la},${lo}"></iframe>`;
-    });
-  }
-
   // 7. Kontaktskjema (befaring)
   const f = $('#kform');
   if (f && window.FIRMA) {
+    const UK = 'olsenbygg_befaring_utkast';
+    try {
+      const u = JSON.parse(localStorage.getItem(UK) || 'null');
+      if (u) Object.entries(u).forEach(([k, v]) => { if (f.elements[k] && v) f.elements[k].value = v; });
+    } catch (_) {}
+    f.addEventListener('input', () => {
+      try { localStorage.setItem(UK, JSON.stringify(Object.fromEntries(new FormData(f)))); } catch (_) {}
+    });
     f.addEventListener('submit', e => {
       e.preventDefault();
       const d = new FormData(f);
@@ -132,8 +131,9 @@
       const tlf = (d.get('tlf') || '').trim();
       const tjVal = d.get('tj') || 'Befaring';
       const msg = (d.get('msg') || '').trim();
+      const adr = (d.get('adr') || '').trim();
       const emne = `Befaring: ${tjVal} – ${navn}`;
-      const tekst = `Navn: ${navn}\nTlf: ${tlf || 'Ikke oppgitt'}\nGjelder: ${tjVal}\n\n${msg || 'Ønsker uforpliktende befaring.'}`;
+      const tekst = `Navn: ${navn}\nTlf: ${tlf || 'Ikke oppgitt'}\nAdresse: ${adr || 'Ikke oppgitt'}\nGjelder: ${tjVal}\n\n${msg || 'Ønsker uforpliktende befaring.'}`;
       const mailto = `mailto:${window.FIRMA.epost}?subject=${encodeURIComponent(emne)}&body=${encodeURIComponent(tekst)}`;
 
       const okBox = $('#kform-ok');
@@ -181,20 +181,4 @@
     r.forEach(e => io.observe(e));
   }
 
-  if (!matchMedia('(prefers-reduced-motion:reduce)').matches) {
-    document.querySelectorAll('.stats b').forEach(b => {
-      const n = parseInt(b.textContent.replace(/\D/g, ''), 10);
-      if (!n || n > 1900 || n < 10) return;
-      const pre = b.textContent.startsWith('~') ? '~' : '';
-      let i = 0;
-      const t = setInterval(() => {
-        i += Math.ceil(n / 25);
-        if (i >= n) {
-          i = n;
-          clearInterval(t);
-        }
-        b.textContent = pre + i;
-      }, 25);
-    });
-  }
 })();

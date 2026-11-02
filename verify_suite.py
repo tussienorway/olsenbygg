@@ -108,4 +108,32 @@ for fact, files in required_facts:
 if all_facts_ok:
     print("PASS: All required facts and AI modules verified present across pages!")
 
+
+print("\n=== TEST 4: FAKTA OG JSON-LD (RUNDE 6) ===")
+import sys
+fail4 = []
+for hf in html_files:
+    c = open(hf, encoding="utf-8").read()
+    if "Uavhengig konsept" not in c: fail4.append(f"{hf}: mangler 'Uavhengig konsept'")
+    for bad in ["Mesterbedrift", "Sentralt godkjent", "StartBANK"]:
+        if bad.lower() in c.lower(): fail4.append(f"{hf}: uverifisert merke '{bad}'")
+    if "openstreetmap.org/export/embed" in c or "<iframe" in c: fail4.append(f"{hf}: innebygd kart/iframe")
+idx = open("index.html", encoding="utf-8").read()
+m = re.search(r'<script type="application/ld\+json">(.*?)</script>', idx, re.S)
+ld = json.loads(m.group(1))
+exp = {"name": "Olsenbygg Grimstad AS", "telephone": "+4741515588", "taxID": "998339898"}
+for k, v in exp.items():
+    if ld.get(k) != v: fail4.append(f"JSON-LD {k}={ld.get(k)}")
+a = ld["address"]
+if (a["streetAddress"], a["postalCode"], a["addressLocality"]) != ("Industriveien 15", "4879", "Grimstad"): fail4.append("JSON-LD adresse feil")
+for k in ["openingHoursSpecification", "geo", "aggregateRating", "review", "priceRange"]:
+    if k in ld: fail4.append(f"JSON-LD har uverifisert felt {k}")
+if 'href="tel:+4741515588"' not in idx: fail4.append("tel-lenke mangler")
+if "998 339 898" not in idx: fail4.append("org.nr. mangler på forsiden")
+print("FAIL: " + "; ".join(fail4) if fail4 else "PASS: Konseptmerke på alle sider, korrekt JSON-LD, tel-lenke, ingen iframe.")
+
+print("\n=== TEST 5: NETTLESER (Playwright) ===")
+import subprocess as sp
+r = sp.run([os.path.expanduser("/workspace/pwvenv/bin/python"), "tests/browser_tests.py"], capture_output=True, text=True)
+print(r.stdout.strip()); print(r.stderr.strip()[-2000:])
 print("Done.")
