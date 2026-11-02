@@ -92,3 +92,15 @@ footer.band{background:#172b4d;color:#c8d1e3}footer.band a{color:#fbb140}
 .hist{max-height:240px;overflow:auto;font-size:.88rem;padding-left:20px}.res{background:#f6f9fc;border-radius:.5rem;padding:12px;margin-top:12px}
 @media(max-width:760px){.fgrid5,.fgrid2{grid-template-columns:1fr}}
 .stats b{font-family:inherit;font-weight:800}
+/* Runde 4: kontrast (WCAG AA), ytelse, CLS */
+:root{--g:#c2410c;--grad:linear-gradient(87deg,#b23a0a 0,#d9480f 100%)}
+.kicker{color:#9a3412;background:#ffedd5}
+.pfilt button{border-color:#c2410c;color:#9a3412}.pfilt button[aria-pressed=true]{background:#c2410c;color:#fff}
+.map-wrap{background:#eef1f7;color:var(--ink)}.map-wrap a{color:#9a3412}
+#kform .fsmall{color:var(--muted)}footer .fsmall,footer.band{color:#dbe2ef}
+.callbar a{color:#172b4d;font-weight:800;text-decoration:none}
+#vcanvas{aspect-ratio:4/3;height:auto}
+@media(max-width:760px){.hero .bg{background-image:url(../img/etter-hus-640.webp)!important}}
+.lab .fsmall{color:#c8d3e6}
+#vstatus{min-height:1.6em}#soner{min-height:210px}#esttab{min-height:170px}
+#kpi{min-height:110px}#lager{min-height:300px}#best{min-height:80px}
