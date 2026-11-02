@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /olsenbygg/materialer.html
+Sitemap: https://tussienorway.github.io/olsenbygg/sitemap.xml

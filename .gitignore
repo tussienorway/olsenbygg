@@ -1,0 +1,5 @@
+.env
+*.key
+.api_key
+node_modules/
+preview.png

@@ -1,0 +1,10 @@
+(()=>{const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const b=$('.burger');b&&b.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!o);$('#meny').classList.toggle('on',!o);$('#meny').style.display=o?'':'flex'});
+const tj=$('#tj');if(tj&&window.TJENESTER){tj.innerHTML=TJENESTER.map(t=>`<div class="card" data-k="${t.k}"><h3>${t.t}</h3><p>${t.d}</p></div>`).join('');const s=$('#tjsel');s.innerHTML=TJENESTER.map(t=>`<option>${t.t}</option>`).join('')+'<option>Annet</option>';}
+const st=$('#status');if(st&&window.FIRMA){const n=new Date(),d=n.getDay(),h=n.getHours()+n.getMinutes()/60,a=FIRMA.apent[d];st.textContent=a&&h>=a[0]&&h<a[1]?'● Åpent nå (07–15)':'● Stengt nå – send forespørsel, så tar vi kontakt';}
+$$('.ba').forEach(ba=>{const i=$('input',ba),bf=$('.before',ba),l=$('.line',ba);const u=()=>{bf.style.clipPath=`inset(0 ${100-i.value}% 0 0)`;l.style.left=i.value+'%'};i.addEventListener('input',u);u()});
+$$('.pfilt button').forEach(bt=>bt.addEventListener('click',()=>{$$('.pfilt button').forEach(x=>x.setAttribute('aria-pressed',x===bt));$$('#plist .card').forEach(c=>c.hidden=!(bt.dataset.f==='alle'||c.dataset.k===bt.dataset.f))}));
+$$('#velg [data-seg]').forEach(a=>a.addEventListener('click',()=>{$$('#tj .card').forEach(c=>c.style.outline=c.dataset.k===a.dataset.seg?'3px solid var(--o)':'')}));
+const vk=$('#vis-kart');vk&&vk.addEventListener('click',()=>{const[la,lo]=FIRMA.geo;$('#kart').innerHTML=`<iframe title="Kart" width="100%" height="300" style="border:0;border-radius:12px" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${lo-.01},${la-.005},${lo+.01},${la+.005}&marker=${la},${lo}"></iframe>`});
+const f=$('#kform');f&&f.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(f);location.href=`mailto:${FIRMA.epost}?subject=${encodeURIComponent('Befaring: '+d.get('tj'))}&body=${encodeURIComponent(`Navn: ${d.get('navn')}\nTlf: ${d.get('tlf')}\n\n${d.get('msg')}`)}`});
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});})();

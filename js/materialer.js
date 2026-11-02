@@ -1,0 +1,11 @@
+(()=>{const K='olsenbygg_materiallogg_v1',$=s=>document.querySelector(s);
+const EKS={lager:[{navn:"Belegningsstein grå (EKSEMPEL)",lager:120,enhet:"m²",min:50},{navn:"Terrassebord 28x120 (EKSEMPEL)",lager:300,enhet:"lm",min:400},{navn:"Isolasjon 200 mm (EKSEMPEL)",lager:40,enhet:"pk",min:20},{navn:"Ferdigplen (EKSEMPEL)",lager:0,enhet:"m²",min:0}],best:[{navn:"Terrassebord 28x120 (EKSEMPEL)",ant:500,enhet:"lm",lev:"Leverandør A (EKSEMPEL)",status:"Bestilt"}]};
+let d=JSON.parse(localStorage.getItem(K)||'null')||structuredClone(EKS);const lagre=()=>localStorage.setItem(K,JSON.stringify(d));
+function vis(){$('#lager').innerHTML='<tr><th>Materiale</th><th>Lager</th><th>Min.</th><th></th></tr>'+d.lager.map((m,i)=>`<tr><td>${m.navn}</td><td class="${m.lager<m.min?'low':''}">${m.lager} ${m.enhet}</td><td>${m.min||0}</td><td><button data-b="${i}">Bestill</button></td></tr>`).join('');
+ $('#best').innerHTML='<tr><th>Materiale</th><th>Antall</th><th>Leverandør</th><th>Status</th></tr>'+d.best.map((b,i)=>`<tr><td>${b.navn}</td><td>${b.ant} ${b.enhet}</td><td>${b.lev}</td><td><button data-s="${i}">${b.status}</button></td></tr>`).join('');}
+document.addEventListener('click',e=>{const b=e.target.dataset.b,s=e.target.dataset.s;if(b!=null){const m=d.lager[b],ant=+prompt('Antall '+m.enhet+'?',Math.max(m.min*2-m.lager,1));if(ant>0){d.best.push({navn:m.navn,ant,enhet:m.enhet,lev:"(fyll inn)",status:"Bestilt"});lagre();vis()}}
+ if(s!=null){const x=d.best[s];if(x.status==='Bestilt'){x.status='Mottatt';const m=d.lager.find(m=>m.navn===x.navn);if(m)m.lager+=x.ant}lagre();vis()}});
+$('#nymat').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);d.lager.push({navn:f.get('navn'),lager:+f.get('lager'),enhet:f.get('enhet'),min:+f.get('min')||0});lagre();vis();e.target.reset()};
+$('#ft').innerHTML=Object.entries(MATERIALER).map(([k,m])=>`<option value="${k}">${m.navn}</option>`).join('');
+$('#fbtn').onclick=()=>{const m=MATERIALER[$('#ft').value],a=+$('#fa').value,q=Math.ceil(a*m.pr*(1+m.svinn));$('#fres').textContent=`Forslag: ${q} ${m.enhet} ${m.navn.toLowerCase()} for ${a} ${m.lopende?'løpemeter':'m²'} (inkl. ${m.svinn*100}% svinn). Estimat – kontroller mot tegning.`};
+$('#reset').onclick=()=>{d=structuredClone(EKS);lagre();vis()};vis();})();
