@@ -19,24 +19,25 @@
 <div class="concept">Uavhengig konsept / demo – ikke bestilt eller godkjent av Olsenbygg Grimstad AS. Offisiell side: <a href="https://www.olsenbygg.com" rel="noopener">olsenbygg.com</a></div>
 <header class="top"><div class="wrap nav">
 <a href="./" aria-label="Forsiden"><img src="img/logo.svg" alt="Olsenbygg (konseptlogo)" width="180" height="46"></a>
-<button class="burger" aria-expanded="false" aria-controls="meny" aria-label="Meny">☰</button>
-<ul id="meny"><li><a href="#tjenester">Tjenester</a></li><li><a href="#prosess">Slik jobber vi</a></li><li><a href="#prosjekter">Prosjekter</a></li><li><a href="scifi-lab.html">Sci-Fi Lab</a></li><li><a href="#kontakt">Kontakt</a></li></ul>
+<button class="burger" type="button" aria-expanded="false" aria-controls="meny" aria-label="Meny">☰</button>
+<ul id="meny"><li><a href="#tjenester">Tjenester</a></li><li><a href="#prosess">Slik jobber vi</a></li><li><a href="#prosjekter">Prosjekter</a></li><li><a href="scifi-lab.html">Sci-Fi Lab</a></li><li><a href="materialer.html">Materiallogg</a></li><li><a href="#kontakt">Kontakt</a></li></ul>
 </div></header>
 <main id="main">
-<section class="hero"><div class="bg" style="background-image:url(img/etter-hus.webp)" role="img" aria-label="KI-illustrasjon av nybygd bolig"></div>
+<section class="hero">
+<img class="hero-img" src="img/etter-hus.webp" srcset="img/etter-hus-640.webp 640w, img/etter-hus.webp 1024w" sizes="100vw" width="1024" height="768" fetchpriority="high" alt="KI-illustrasjon av nybygd bolig">
 <div class="wrap"><span class="kicker">Grimstad · Sørlandet · siden 2004</span>
 <h1>Arkitekt, ingeniør og byggmester – under samme tak</h1>
 <p>Fra første skisse og byggesøknad til nøkkel i hånda. Ingen jobb er for liten, og befaringen er gratis.</p>
-<p class="status" id="status" aria-live="polite"></p>
-<a class="btn" href="#kontakt">Bestill gratis befaring</a> <a class="btn ghost" href="scifi-lab.html">Visualiser tomta di</a>
-<p style="font-size:.8rem;opacity:.8">Bakgrunnsbildet er en KI-illustrasjon, ikke et Olsenbygg-prosjekt.</p></div>
-<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="#f3f1ed" d="M0 40c240 40 480 40 720 0s480-40 720 0v40H0z"/></svg></section>
+<div><p class="status" id="status" aria-live="polite"></p></div>
+<div class="hero-actions"><a class="btn" href="#kontakt">Bestill gratis befaring</a> <a class="btn ghost" href="scifi-lab.html">Visualiser tomta di</a></div>
+<p style="font-size:.82rem;opacity:.88">Bakgrunnsbildet er en KI-illustrasjon, ikke et Olsenbygg-prosjekt.</p></div>
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="#f8f9fe" d="M0 40c240 40 480 40 720 0s480-40 720 0v40H0z"/></svg></section>
 
 <section id="velg" class="reveal"><div class="wrap center"><h2>Hva trenger du hjelp med?</h2>
 <div class="grid g3">
-<a class="card tgc" href="#tjenester" data-seg="privat"><span class="icon-shape" aria-hidden="true">🏡</span><h3>Privat</h3><p>Ny enebolig, tilbygg, påbygg eller oppussing.</p></a>
-<a class="card tgc" href="#tjenester" data-seg="naering"><span class="icon-shape" aria-hidden="true">🏢</span><h3>Næring</h3><p>Bygg, rehabilitering og etterisolering for bedrifter.</p></a>
-<a class="card tgc" href="#tjenester" data-seg="offentlig"><span class="icon-shape" aria-hidden="true">🏛️</span><h3>Offentlig</h3><p>Prosjektering, søknader og bygging for kommune og offentlige.</p></a>
+<a class="card tgc" href="#tjenester" data-seg="privat"><span class="icon-shape" aria-hidden="true">🏡</span><h3>Privat</h3><p>Ny enebolig, tilbygg, påbygg, interiørveiledning eller oppussing.</p></a>
+<a class="card tgc" href="#tjenester" data-seg="naering"><span class="icon-shape" aria-hidden="true">🏢</span><h3>Næring</h3><p>Bygg, arkitekttegninger, rehabilitering og etterisolering for bedrifter.</p></a>
+<a class="card tgc" href="#tjenester" data-seg="offentlig"><span class="icon-shape" aria-hidden="true">🏛️</span><h3>Offentlig</h3><p>Prosjektering, byggesøknader og utførelse for kommune og offentlige.</p></a>
 </div></div></section>
 
 <section class="band"><div class="wrap stats">
@@ -49,53 +50,61 @@
 <a class="card" href="materialer.html"><h3>MODUL 3 · Materiallogg (internt)</h3><p>Lager, bestillinger og KI-forslag til mengder. Eksempeldata.</p></a>
 </div></div></section>
 
-<section id="tjenester"><div class="wrap"><div class="center"><h2>Tjenester</h2><p>Fra olsenbygg.com – byggmestertjenester for private, næring og offentlige på sentrale Sørlandet.</p></div>
+<section id="tjenester"><div class="wrap"><div class="center"><h2>Tjenester</h2><p>Fra olsenbygg.com – byggmestertjenester for private, næring og offentlige på sentrale Sørlandet.</p>
+<div class="tjfilt" role="group" aria-label="Filtrer tjenester etter målgruppe"><button type="button" aria-pressed="true" data-tf="alle">Alle tjenester</button><button type="button" aria-pressed="false" data-tf="privat">Privat</button><button type="button" aria-pressed="false" data-tf="naering">Næring</button><button type="button" aria-pressed="false" data-tf="offentlig">Offentlig</button></div>
+</div>
 <div class="grid g3" id="tj"></div></div></section>
 
 <section id="prosess" class="band reveal"><div class="wrap"><h2 class="center">Slik jobber vi</h2>
-<ol class="steps"><li><h3>Gratis befaring</h3>Vi ser på tomta eller huset og hører hva du ønsker.</li><li><h3>Tegning og prosjektering</h3>Arkitekt og ingeniør lager tegninger og beregninger.</li><li><h3>Søknad</h3>Vi håndterer byggemelding mot kommunen.</li><li><h3>Bygging</h3>Egne byggmestere og formenn følger jobben.</li><li><h3>Overlevering</h3>Gjennomgang og nøkkel i hånda.</li></ol></div></section>
+<ol class="steps"><li><h3>Gratis befaring</h3>Vi ser på tomta eller huset og hører hva du ønsker.</li><li><h3>Tegning og prosjektering</h3>Arkitekt og ingeniør lager tegninger i 1:50 og beregninger.</li><li><h3>Søknad</h3>Vi håndterer byggemelding og søknad mot kommunen.</li><li><h3>Bygging</h3>Egne byggmestere og formenn følger jobben tett.</li><li><h3>Overlevering</h3>Gjennomgang og nøkkel i hånda til avtalt tid.</li></ol></div></section>
 
 <section id="inspirasjon"><div class="wrap"><div class="center"><span class="kicker">Inspirasjon (illustrasjon)</span><h2>Fra tomt til hjem</h2>
-<p>Dra i håndtaket eller bruk piltastene. <b>Begge bildene er KI-genererte illustrasjoner</b> – ikke bilder av et Olsenbygg-prosjekt.</p></div>
-<div class="ba" style="max-width:820px;margin:auto"><img src="img/etter-hus.webp" srcset="img/etter-hus-640.webp 640w, img/etter-hus.webp 1024w" sizes="(max-width:860px) 100vw, 820px" alt="KI-illustrasjon: ferdig enebolig" width="1024" height="768" loading="lazy"><img class="before" src="img/for-tomt.webp" srcset="img/for-tomt-640.webp 640w, img/for-tomt.webp 1024w" sizes="(max-width:860px) 100vw, 820px" alt="KI-illustrasjon: ubebygd tomt" width="1024" height="768" loading="lazy"><span class="lbl l">FØR · KI-illustrasjon</span><span class="lbl" style="right:12px">ETTER · KI-illustrasjon</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Sammenlign før og etter"></div></div></section>
+<p>Dra i håndtaket, bruk hurtigknappene eller piltastene. <b>Begge bildene er KI-genererte illustrasjoner</b> – ikke bilder av et Olsenbygg-prosjekt.</p>
+<div class="ba-ctrl" role="group" aria-label="Hurtigvalg for før og etter"><button type="button" data-ba="100">Vis før (tomt)</button><button type="button" data-ba="50" class="on">50 / 50 sammenligning</button><button type="button" data-ba="0">Vis etter (ferdig bolig)</button></div>
+</div>
+<div class="ba" style="max-width:820px;margin:auto"><img src="img/etter-hus.webp" srcset="img/etter-hus-640.webp 640w, img/etter-hus.webp 1024w" sizes="(max-width:860px) 100vw, 820px" alt="KI-illustrasjon: ferdig enebolig" width="1024" height="768" loading="lazy"><img class="before" src="img/for-tomt.webp" srcset="img/for-tomt-640.webp 640w, img/for-tomt.webp 1024w" sizes="(max-width:860px) 100vw, 820px" alt="KI-illustrasjon: ubebygd tomt" width="1024" height="768" loading="lazy"><span class="lbl l">FØR · KI-illustrasjon</span><span class="lbl r">ETTER · KI-illustrasjon</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Sammenlign før og etter"></div></div></section>
 
 <section id="folk" class="band reveal"><div class="wrap"><h2 class="center">Folk og prosjekter</h2><div class="grid g3">
-<div class="card"><span class="ex">EKSEMPEL</span><h3>Fagfolkene</h3><p>Plass til bilde og presentasjon av byggmestere, ingeniør og arkitekt. Fylles ut av Olsenbygg.</p></div>
-<div class="card"><span class="ex">EKSEMPEL</span><h3>Kundeomtale</h3><p>«Her kommer en ekte kundeomtale med navn og samtykke.»</p></div>
-<div class="card"><span class="ex">EKSEMPEL</span><h3>Referanseprosjekt</h3><p>Bilder, sted, år og omfang fra et ekte prosjekt (f.eks. «Enebolig i Lillesand» som står på olsenbygg.com).</p></div>
+<div class="card"><span class="ex">EKSEMPEL</span><h3>Fagfolkene</h3><p>Plass til bilde og presentasjon av byggmestere, ingeniør og arkitekt under samme tak i Grimstad. Fylles ut av Olsenbygg.</p></div>
+<div class="card"><span class="ex">EKSEMPEL</span><h3>Kundeomtale</h3><p>«Her kommer en ekte kundeomtale med navn, prosjekt og samtykke.»</p></div>
+<div class="card"><span class="ex">EKSEMPEL</span><h3>Referanseprosjekt</h3><p>Bilder, sted, år og omfang fra et ekte prosjekt (f.eks. «Enebolig i Lillesand» som er omtalt på olsenbygg.com).</p></div>
 </div></div></section>
 
-<section id="prosjekter"><div class="wrap"><h2 class="center">Prosjekter</h2><div class="center pfilt" role="group" aria-label="Filtrer prosjekter"><button aria-pressed="true" data-f="alle">Alle</button><button aria-pressed="false" data-f="nybygg">Nybygg</button><button aria-pressed="false" data-f="tilbygg">Tilbygg</button><button aria-pressed="false" data-f="rehab">Rehabilitering</button></div>
+<section id="prosjekter"><div class="wrap"><h2 class="center">Prosjekter</h2><div class="center pfilt" role="group" aria-label="Filtrer prosjekter"><button type="button" aria-pressed="true" data-f="alle">Alle</button><button type="button" aria-pressed="false" data-f="nybygg">Nybygg</button><button type="button" aria-pressed="false" data-f="tilbygg">Tilbygg</button><button type="button" aria-pressed="false" data-f="rehab">Rehabilitering</button></div>
 <div class="grid g3" id="plist">
-<div class="card" data-k="nybygg"><span class="ex">EKSEMPEL</span><h3>Nybygg – plassholder</h3><p>Ekte prosjekt legges inn av Olsenbygg.</p></div>
-<div class="card" data-k="tilbygg"><span class="ex">EKSEMPEL</span><h3>Tilbygg – plassholder</h3><p>Ekte prosjekt legges inn av Olsenbygg.</p></div>
-<div class="card" data-k="rehab"><span class="ex">EKSEMPEL</span><h3>Rehabilitering – plassholder</h3><p>Ekte prosjekt legges inn av Olsenbygg.</p></div>
+<div class="card" data-k="nybygg"><span class="ex">EKSEMPEL</span><h3>Nybygg – enebolig på Sørlandet</h3><p>Arkitekttegnet enebolig fra byggesøknad til nøkkelferdig overlevering. Ekte prosjektbilder legges inn av Olsenbygg.</p></div>
+<div class="card" data-k="tilbygg"><span class="ex">EKSEMPEL</span><h3>Tilbygg og påbygg – ekstra etasje og stue</h3><p>Utvidelse av eksisterende familiebolig med tegninger i 1:50 og komplett tømrerleveranse. Ekte prosjekt legges inn av Olsenbygg.</p></div>
+<div class="card" data-k="rehab"><span class="ex">EKSEMPEL</span><h3>Rehabilitering og etterisolering av murbygg</h3><p>Oppgradering av fasade, vinduer og etterisolering for lavere energibruk. Ekte prosjekt legges inn av Olsenbygg.</p></div>
 </div></div></section>
 
-<section class="band"><div class="wrap grid g2 ac"><div><h2>HMS og bærekraft</h2><p>Etterisolering av eldre murbygg gir lavere energibruk. Sertifiseringer, HMS-rutiner og miljøtiltak fylles inn av Olsenbygg.</p><span class="ex">EKSEMPEL – ingen sertifiseringer er oppgitt her</span></div>
-<div><h2>Jobb hos oss</h2><p>Snekker, lærling eller ingeniør? Ledige stillinger publiseres her.</p><span class="ex">EKSEMPEL</span><p><a class="btn alt" href="#kontakt">Ta kontakt</a></p></div></div></section>
+<section class="band"><div class="wrap grid g2 ac"><div><h2>HMS og bærekraft</h2><p>Etterisolering av eldre murbygg og rehabilitering gir lavere energibruk og lengre levetid. Sertifiseringer, HMS-rutiner og miljøtiltak fylles inn av Olsenbygg.</p><span class="ex">EKSEMPEL – ingen sertifiseringer er oppgitt her</span></div>
+<div><h2>Jobb hos oss</h2><p>Dyktig tømrer, snekker, lærling eller ingeniør på Sørlandet? Ledige stillinger og åpen søknad publiseres her.</p><span class="ex">EKSEMPEL</span><p><a class="btn alt" href="#kontakt">Ta kontakt</a></p></div></div></section>
 
 <section id="faq" class="reveal"><div class="wrap narrow"><h2 class="center">Ofte stilte spørsmål</h2>
-<details class="faq"><summary>Koster befaringen noe?</summary><p>Nei, olsenbygg.com oppgir gratis befaring.</p></details>
-<details class="faq"><summary>Tar dere små jobber?</summary><p>Ja – «Ingen jobb er for liten», ifølge olsenbygg.com.</p></details>
-<details class="faq"><summary>Kan dere søke om byggetillatelse for meg?</summary><p>Ja, søknadsarbeid og byggemeldinger er blant tjenestene.</p></details>
-<details class="faq"><summary>Hvor nøyaktig er estimatet i Sci-Fi Lab?</summary><p>Det er et grovt eksempelestimat. Endelig pris får du først etter befaring og tilbud.</p></details>
+<details class="faq"><summary>Koster befaringen noe?</summary><p>Nei, olsenbygg.com oppgir at befaringen er gratis og uforpliktende.</p></details>
+<details class="faq"><summary>Tar dere små jobber?</summary><p>Ja – «Ingen jobb er for liten», ifølge olsenbygg.com. Vi tar alt fra mindre endringer til komplette nybygg.</p></details>
+<details class="faq"><summary>Kan dere lage tegninger og søke om byggetillatelse for meg?</summary><p>Ja, med arkitekt, ingeniør og byggmester under samme tak håndterer vi tegninger i 1:50, salgstegninger, nabovarsel og byggemeldinger mot kommunen.</p></details>
+<details class="faq"><summary>Hvor nøyaktig er estimatet i Sci-Fi Lab?</summary><p>Det er et grovt eksempelestimat for materialer. Endelig pris får du først etter gratis befaring og skriftlig tilbud.</p></details>
 </div></section>
 
 <section id="kontakt" class="band"><div class="wrap grid g2">
 <div><h2>Kontakt</h2>
 <p><b>Olsenbygg Grimstad AS</b><br>Industriveien 15, 4879 Grimstad</p>
-<p>📞 <a href="tel:+4741515588">415 15 588</a><br>✉️ <a href="mailto:rolf@olsenbygg.com">rolf@olsenbygg.com</a></p>
+<p>📞 <a href="tel:+4741515588">415 15 588</a><br>✉️ <a href="mailto:rolf@olsenbygg.com">rolf@olsenbygg.com</a><br>🌐 <a href="https://www.olsenbygg.com" rel="noopener">www.olsenbygg.com</a></p>
 <div class="open" id="open"><b>Åpningstider</b><br>Man–fre 07–15<br><small>Kilde: tredjeparts oppføring – ikke bekreftet av bedriften.</small></div>
-<div class="map-wrap" id="kart"><p>Kart lastes først når du ber om det (ingen sporing før det).</p><button class="btn alt" id="vis-kart">Vis kart</button> <a href="https://www.google.com/maps/search/?api=1&query=Industriveien+15+4879+Grimstad" rel="noopener">Åpne i Google Maps</a></div></div>
-<form id="kform"><h3>Be om befaring</h3>
-<label>Navn<input name="navn" required></label><label>Telefon<input name="tlf" type="tel"></label>
-<label>Hva gjelder det?<select name="tj" id="tjsel"></select></label><label>Beskrivelse<textarea name="msg" rows="4"></textarea></label>
-<button class="btn">Lag e-post</button><p class="fsmall">Skjemaet lagrer ingenting – det åpner e-postprogrammet ditt.</p></form>
+<div class="map-wrap" id="kart"><div><p style="margin-top:0">Kart lastes først når du ber om det (ingen sporing før det).</p><button class="btn alt" type="button" id="vis-kart">Vis kart</button> <p style="margin:10px 0 0"><a href="https://www.google.com/maps/search/?api=1&query=Industriveien+15+4879+Grimstad" rel="noopener">Åpne i Google Maps</a></p></div></div></div>
+<form id="kform" class="card"><h3>Be om gratis befaring</h3>
+<label>Navn *<input name="navn" required placeholder="Ditt navn"></label>
+<label>Telefon<input name="tlf" type="tel" placeholder="F.eks. 900 00 000"></label>
+<label>Hva gjelder det?<select name="tj" id="tjsel"></select></label>
+<label>Beskrivelse av oppdraget<textarea name="msg" rows="4" placeholder="Fortell kort om tomt, bolig eller ønsket tiltak …"></textarea></label>
+<button class="btn" type="submit">Lag e-post</button>
+<p class="fsmall">Skjemaet lagrer ingenting på noen server – det klargjør e-post til rolf@olsenbygg.com.</p>
+<div id="kform-ok" aria-live="polite"></div></form>
 </div></section>
 </main>
 <footer class="band"><div class="wrap fsmall"><p><b>DEMO:</b> Forslag til ny nettside laget som uavhengig konsept – ikke bestilt eller godkjent av Olsenbygg Grimstad AS. Tekst merket EKSEMPEL er plassholdere. Bilder er KI-illustrasjoner.</p>
-<p><a href="personvern.html">Personvern</a> · <a href="tilgjengelighet.html">Tilgjengelighet</a> · <a href="materialer.html">Materiallogg (internt)</a></p></div></footer>
-<div class="callbar"><a href="tel:+4741515588">📞 Ring</a><a href="#kontakt">✉️ Befaring</a></div>
+<p><a href="personvern.html">Personvern</a> · <a href="tilgjengelighet.html">Tilgjengelighet</a> · <a href="scifi-lab.html">Sci-Fi Lab</a> · <a href="materialer.html">Materiallogg (internt)</a></p></div></footer>
+<div class="callbar"><a href="tel:+4741515588">📞 Ring 415 15 588</a><a href="#kontakt">✉️ Gratis befaring</a></div>
 <script src="js/data.js" defer></script><script src="js/main.js" defer></script>
 </body></html>

@@ -1,18 +1,28 @@
 <!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#141b24"><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/olsen.css"><title>Sci-Fi Lab – visualiser tomta (konsept) | Olsenbygg</title><meta name="description" content="Last opp bilde av tomta, marker området og se belegningsstein, terrasse, hekk, plen eller støttemur. Med grovt mengde- og prisestimat."></head>
-<body class="lab"><a class="skip" href="#main">Hopp til innhold</a><div class="concept">Uavhengig konsept / demo – ikke bestilt eller godkjent av Olsenbygg Grimstad AS.</div><header class="top"><div class="wrap nav"><a href="./"><img src="img/logo.svg" alt="Olsenbygg (konseptlogo) – til forsiden" width="180" height="46"></a><ul id="meny"><li><a href="./">Forside</a></li><li><a href="scifi-lab.html">Sci-Fi Lab</a></li><li><a href="./#kontakt">Kontakt</a></li></ul></div></header><main id="main"><section><div class="wrap">
+<body class="lab"><a class="skip" href="#main">Hopp til innhold</a><div class="concept">Uavhengig konsept / demo – ikke bestilt eller godkjent av Olsenbygg Grimstad AS. Offisiell side: <a href="https://www.olsenbygg.com" rel="noopener">olsenbygg.com</a></div>
+<header class="top"><div class="wrap nav">
+<a href="./" aria-label="Forsiden"><img src="img/logo.svg" alt="Olsenbygg (konseptlogo) – til forsiden" width="180" height="46"></a>
+<button class="burger" type="button" aria-expanded="false" aria-controls="meny" aria-label="Meny">☰</button>
+<ul id="meny"><li><a href="./">Forside</a></li><li><a href="./#tjenester">Tjenester</a></li><li><a href="./#prosjekter">Prosjekter</a></li><li><a href="scifi-lab.html" aria-current="page">Sci-Fi Lab</a></li><li><a href="materialer.html">Materiallogg</a></li><li><a href="./#kontakt">Kontakt</a></li></ul>
+</div></header>
+<main id="main"><section><div class="wrap">
 <span class="kicker">SCI-FI LAB</span><h1>Visualiser tomta di</h1>
 <p class="warn">Bildet er en <b>illustrasjon</b>, og tall og priser er <b>grove eksempelestimat</b> – ikke tilbud fra Olsenbygg. Bildet ditt sendes ingen steder i demomodus.</p>
 <div class="grid g2" id="vis">
 <div class="card"><h2>1 · Tomt og valg</h2>
-<label for="foto">Bilde av eiendommen</label><input type="file" id="foto" accept="image/*">
-<p><b>Soner</b> – én sone per materiale. Velg sone, klikk i bildet for å sette punkter, dra punkter for å flytte, dobbeltklikk for å slette et punkt.</p>
+<label for="foto">Bilde av eiendommen</label>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input type="file" id="foto" accept="image/*" style="flex:1;min-width:200px"><button type="button" class="btn ghost" id="eksempelbilde" style="padding:9px 14px;font-size:.85rem">Bruk eksempeltomt</button></div>
+<p style="margin:12px 0 4px"><b>Hurtigvalg for aktiv sone</b> – klikk for å bytte dekke eller hekk direkte:</p>
+<div class="mat-hurtig" id="mat-hurtig" role="group" aria-label="Hurtigvalg for materiale i aktiv sone"></div>
+<p style="margin:10px 0 6px"><b>Soner</b> – én sone per materiale. Velg sone, endre m²/lengde, klikk i bildet for å sette punkter, dra punkter for å flytte, dobbeltklikk for å slette et punkt.</p>
 <div id="soner"></div><button type="button" class="btn ghost" id="nysone">+ Ny sone</button>
 <p style="margin-top:14px"><label for="modus">Modus</label><select id="modus"><option value="demo">Demo (lokalt, uten nøkkel)</option><option value="ai">Grok-bilde-KI via proxy</option></select></p>
 <p class="fsmall" id="modusinfo"></p>
-<button class="btn" id="kjor">Visualiser</button> </div>
-<div class="card"><h2>2 · Resultat</h2><div class="tbar"><button type="button" class="btn ghost" id="angre">Angre punkt</button><button type="button" class="btn ghost" id="nullstill">Tøm sone</button><button type="button" class="btn ghost" id="forEtter" title="Hold inne for å se originalen">Hold: før</button><button type="button" class="btn ghost" id="last">Last ned PNG</button></div>
+<button type="button" class="btn" id="kjor">Visualiser</button></div>
+<div class="card"><h2>2 · Resultat</h2><div class="tbar"><button type="button" class="btn ghost" id="angre">Angre punkt</button><button type="button" class="btn ghost" id="nullstill">Tøm sone</button><button type="button" class="btn ghost" id="forEtter" title="Hold inne eller klikk for å se originalen">Hold: før</button><button type="button" class="btn ghost" id="last">Last ned PNG</button></div>
 <canvas id="vcanvas" width="960" height="720" aria-label="Visualisering av tomta"></canvas>
 <p id="vstatus" aria-live="polite"></p><span class="pill">KI-/demo-illustrasjon</span></div></div>
 <div class="card" id="mengde" style="margin-top:20px"><h2>3 · Mengde og grovestimat <span class="big" id="sumbig" aria-live="polite"></span></h2><table class="est" id="esttab"></table><p class="fsmall">Eksempelpriser inkl. mva for materialer, uten arbeid, graving og frakt. Kun estimat.</p><a class="btn" href="./#kontakt">Bestill gratis befaring</a></div>
-</div></section></main><footer class="band" style="background:#0b1118"><div class="wrap fsmall">Uavhengig konsept – ikke godkjent av Olsenbygg. <a href="personvern.html">Personvern</a></div></footer>
-<script src="js/data.js" defer></script><script src="js/ai-config.js" defer></script><script src="js/visualiser.js" defer></script></body></html>
+</div></section></main>
+<footer class="band" style="background:#0b1118"><div class="wrap fsmall"><p>Uavhengig konsept – ikke bestilt eller godkjent av Olsenbygg Grimstad AS.</p><p><a href="./">Forside</a> · <a href="personvern.html">Personvern</a> · <a href="tilgjengelighet.html">Tilgjengelighet</a> · <a href="materialer.html">Materiallogg (internt)</a></p></div></footer>
+<script src="js/data.js" defer></script><script src="js/main.js" defer></script><script src="js/ai-config.js" defer></script><script src="js/visualiser.js" defer></script></body></html>

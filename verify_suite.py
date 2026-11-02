@@ -29,12 +29,35 @@ for hf in html_files:
         if clean_href and clean_href != "./" and not os.path.exists(clean_href):
             errors.append(f"[{hf}] Broken link: {href}")
 
+    # Check images
+    for m in re.finditer(r'<img[^>]+src=["\']([^"\']+)["\']', content):
+        src = m.group(1)
+        if not src.startswith(("http", "data:")) and not os.path.exists(src):
+            errors.append(f"[{hf}] Missing image: {src}")
+
+    # Check mobile menu button and meta description
+    if 'class="burger"' not in content:
+        errors.append(f"[{hf}] Missing mobile .burger button")
+    if 'name="description"' not in content:
+        errors.append(f"[{hf}] Missing meta description")
+
+# Check sw.js precache files
+with open("sw.js", "r", encoding="utf-8") as swf:
+    swc = swf.read()
+sw_list_match = re.search(r"F=\[([^\]]+)\]", swc)
+if sw_list_match:
+    for item in re.findall(r"'([^']+)'", sw_list_match.group(1)):
+        if item != "./" and not os.path.exists(item):
+            errors.append(f"[sw.js] Missing precache asset: {item}")
+        if "js/ai-config.js" not in sw_list_match.group(1):
+            errors.append("[sw.js] Missing js/ai-config.js in precache")
+
 if errors:
     print("FAIL: Found errors:")
     for e in errors:
         print(" ", e)
 else:
-    print(f"PASS: All {len(html_files)} HTML files have valid local links and assets!")
+    print(f"PASS: All {len(html_files)} HTML files and sw.js precache assets have valid local links, images, meta descriptions, and mobile menus!")
 
 print("\n=== TEST 2: SECRET LEAK SCAN ===")
 secret_patterns = [

@@ -1,16 +1,45 @@
-<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#141b24"><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/olsen.css"><title>Materiallogg (internt verktøy, eksempeldata) | Olsenbygg-konsept</title><meta name="robots" content="noindex"></head>
-<body><a class="skip" href="#main">Hopp til innhold</a><div class="concept">Uavhengig konsept / demo – ikke bestilt eller godkjent av Olsenbygg Grimstad AS.</div><header class="top"><div class="wrap nav"><a href="./"><img src="img/logo.svg" alt="Olsenbygg (konseptlogo) – til forsiden" width="180" height="46"></a><ul id="meny"><li><a href="./">Forside</a></li><li><a href="scifi-lab.html">Sci-Fi Lab</a></li><li><a href="./#kontakt">Kontakt</a></li></ul></div></header><main id="main" class="tool"><section><div class="wrap">
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#141b24"><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/olsen.css"><title>Materiallogg (internt verktøy, eksempeldata) | Olsenbygg-konsept</title><meta name="description" content="Internt verktøy for materiallogg, lagerstatus, bestillinger, statusflyt og CSV-eksport (eksempeldata i nettleseren) for Olsenbygg-konsept."><meta name="robots" content="noindex"></head>
+<body><a class="skip" href="#main">Hopp til innhold</a><div class="concept">Uavhengig konsept / demo – ikke bestilt eller godkjent av Olsenbygg Grimstad AS. Offisiell side: <a href="https://www.olsenbygg.com" rel="noopener">olsenbygg.com</a></div>
+<header class="top"><div class="wrap nav">
+<a href="./" aria-label="Forsiden"><img src="img/logo.svg" alt="Olsenbygg (konseptlogo) – til forsiden" width="180" height="46"></a>
+<button class="burger" type="button" aria-expanded="false" aria-controls="meny" aria-label="Meny">☰</button>
+<ul id="meny"><li><a href="./">Forside</a></li><li><a href="./#tjenester">Tjenester</a></li><li><a href="./#prosjekter">Prosjekter</a></li><li><a href="scifi-lab.html">Sci-Fi Lab</a></li><li><a href="materialer.html" aria-current="page">Materiallogg</a></li><li><a href="./#kontakt">Kontakt</a></li></ul>
+</div></header>
+<main id="main" class="tool"><section><div class="wrap">
 <span class="kicker">INTERNT · EKSEMPELDATA</span><h1>Materiallogg</h1>
 <p><span class="ex">EKSEMPELDATA</span> Lagres kun i denne nettleseren (localStorage). Ikke koblet til Olsenbyggs systemer. Alle tall er oppdiktede eksempler.</p>
 <div class="stats" id="kpi" aria-live="polite"></div>
-<div class="card pad" style="margin-top:22px"><div class="tbar2"><h2 style="margin:0">Lager</h2><input id="sok" type="search" placeholder="Søk materiale eller prosjekt …" aria-label="Søk i lager"><label class="inl"><input type="checkbox" id="bareLav"> Bare under minimum</label></div>
+<p id="mstatus" aria-live="polite" style="font-weight:700;color:var(--g);min-height:1.5em;margin:10px 0 0"></p>
+
+<div class="card pad" style="margin-top:14px"><div class="tbar2"><h2 style="margin:0">Lager</h2><input id="sok" type="search" placeholder="Søk materiale eller prosjekt …" aria-label="Søk i lager"><label class="inl"><input type="checkbox" id="bareLav"> Bare under minimum</label></div>
 <div class="scroll"><table id="lager"></table></div>
-<form id="nymat" class="fgrid5"><input name="navn" placeholder="Materiale" required aria-label="Materiale"><input name="lager" type="number" min="0" placeholder="På lager" required aria-label="På lager"><input name="enhet" placeholder="Enhet" required aria-label="Enhet"><input name="min" type="number" min="0" placeholder="Minimum" aria-label="Minimum"><input name="prosjekt" placeholder="Prosjekt (valgfritt)" aria-label="Prosjekt"><button class="btn">Legg til</button></form></div>
-<div class="card pad" style="margin-top:22px"><h2>Bestillinger</h2><div class="scroll"><table id="best"></table></div></div>
+<form id="nymat" class="fgrid5"><input name="navn" placeholder="Materiale" required aria-label="Materiale"><input name="lager" type="number" min="0" placeholder="På lager" required aria-label="På lager"><input name="enhet" placeholder="Enhet (m², lm, stk)" required aria-label="Enhet"><input name="min" type="number" min="0" placeholder="Minimum" aria-label="Minimum"><input name="prosjekt" placeholder="Prosjekt (valgfritt)" aria-label="Prosjekt"><button class="btn" type="submit">Legg til</button></form></div>
+
+<div class="card pad" style="margin-top:22px">
+<div class="tbar2"><h2 style="margin:0">Bestillinger</h2>
+<div class="pfilt" style="margin:0" role="group" aria-label="Filtrer bestillinger etter status">
+<button type="button" aria-pressed="true" data-bf="alle">Alle</button>
+<button type="button" aria-pressed="false" data-bf="Bestilt">Bestilt</button>
+<button type="button" aria-pressed="false" data-bf="Bekreftet">Bekreftet</button>
+<button type="button" aria-pressed="false" data-bf="Levert">Levert</button>
+</div></div>
+<div class="scroll"><table id="best"></table></div>
+<form id="nybest" class="fgrid5" style="margin-top:16px">
+<input name="navn" list="mat-forslag" placeholder="Materiale å bestille" required aria-label="Materiale å bestille">
+<datalist id="mat-forslag"></datalist>
+<input name="ant" type="number" min="1" placeholder="Antall" required aria-label="Antall å bestille">
+<input name="enhet" placeholder="Enhet (m², lm, stk)" value="lm" required aria-label="Enhet for bestilling">
+<input name="lev" placeholder="Leverandør" value="Byggevare Grimstad (eksempel)" aria-label="Leverandør">
+<select name="status" aria-label="Startstatus for bestilling"><option value="Bestilt">Bestilt</option><option value="Bekreftet">Bekreftet</option><option value="Levert">Levert</option></select>
+<button class="btn" type="submit">Ny bestilling</button>
+</form></div>
+
 <div class="grid g2" style="margin-top:22px">
 <div class="card pad"><h2>KI-forslag til mengder</h2><p>Regelbasert forslag ut fra areal/lengde med svinn. Kan senere kobles til språkmodell via proxy.</p>
-<div class="fgrid2"><label>Areal / lengde<input id="fa" type="number" value="60"></label><label>Materiale<select id="ft"></select></label></div>
-<button class="btn" id="fbtn">Foreslå</button><div id="fres" aria-live="polite"></div></div>
+<div class="fgrid2"><label>Areal / lengde<input id="fa" type="number" min="1" value="60"></label><label>Materiale<select id="ft"></select></label></div>
+<button class="btn" type="button" id="fbtn" style="margin-top:12px">Foreslå</button><div id="fres" aria-live="polite"></div></div>
 <div class="card pad"><h2>Historikk</h2><ol id="hist" class="hist"></ol></div></div>
-<p style="margin-top:22px"><button class="btn alt" id="csv">Eksporter CSV</button> <button class="btn ghost" id="reset">Tilbakestill eksempeldata</button></p>
-</div></section></main><script src="js/data.js" defer></script><script src="js/materialer.js" defer></script></body></html>
+<p style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px"><button class="btn alt" type="button" id="csv">Eksporter CSV</button> <button class="btn ghost" type="button" id="reset">Tilbakestill eksempeldata</button></p>
+</div></section></main>
+<footer class="band"><div class="wrap fsmall"><p>Uavhengig konsept – ikke bestilt eller godkjent av Olsenbygg Grimstad AS. Kun eksempeldata i nettleseren.</p><p><a href="./">Forside</a> · <a href="scifi-lab.html">Sci-Fi Lab</a> · <a href="personvern.html">Personvern</a> · <a href="tilgjengelighet.html">Tilgjengelighet</a></p></div></footer>
+<script src="js/data.js" defer></script><script src="js/main.js" defer></script><script src="js/materialer.js" defer></script></body></html>
