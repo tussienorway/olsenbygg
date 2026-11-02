@@ -78,3 +78,17 @@ footer.band{background:#172b4d;color:#c8d1e3}footer.band a{color:#fbb140}
 .est tr.sum th{font-size:1.05rem;border-top:2px solid #fb6340}
 .lab .est{color:#dfe8f1}.lab .est th{color:#fff}
 @media(max-width:760px){.sone{grid-template-columns:1fr 1fr}.sone select{grid-column:1/-1}}
+/* Runde 3: materiallogg */
+.pad{padding:24px}.scroll{overflow-x:auto}
+.tool table{background:transparent}.tool th{color:var(--ink);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;background:#f6f9fc}
+.tool tr:hover td{background:#fafbfe}
+.tbar2{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px}.tbar2 input[type=search]{flex:1;min-width:200px;max-width:360px}
+.inl{display:flex;gap:6px;align-items:center;font-weight:600}.inl input{width:auto}
+.fgrid5{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 2fr auto;gap:8px;margin-top:14px}.fgrid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fgrid5 .btn{margin:0}.tool label{font-weight:700;font-size:.85rem;color:var(--ink)}
+.mini{border:0;background:#f6f9fc;color:var(--ink);border-radius:.375rem;padding:4px 10px;font-weight:700;cursor:pointer;box-shadow:0 1px 3px rgba(50,50,93,.15);transition:transform .1s}.mini:hover{transform:translateY(-1px)}.mini.del{color:#f5365c}
+.bar{width:90px;height:8px;border-radius:99px;background:#e9ecef;overflow:hidden}.bar span{display:block;height:100%;border-radius:99px;transition:width .4s}
+.pill.ok{background:#d3f7e6;color:#1a8a5a}.warnc{background:linear-gradient(87deg,#f5365c,#f56036)!important;-webkit-background-clip:text!important;background-clip:text!important}
+.hist{max-height:240px;overflow:auto;font-size:.88rem;padding-left:20px}.res{background:#f6f9fc;border-radius:.5rem;padding:12px;margin-top:12px}
+@media(max-width:760px){.fgrid5,.fgrid2{grid-template-columns:1fr}}
+.stats b{font-family:inherit;font-weight:800}

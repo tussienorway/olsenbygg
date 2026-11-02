@@ -1,12 +1,16 @@
 <!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#141b24"><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/olsen.css"><title>Materiallogg (internt verktøy, eksempeldata) | Olsenbygg-konsept</title><meta name="robots" content="noindex"></head>
 <body><a class="skip" href="#main">Hopp til innhold</a><div class="concept">Uavhengig konsept / demo – ikke bestilt eller godkjent av Olsenbygg Grimstad AS.</div><header class="top"><div class="wrap nav"><a href="./"><img src="img/logo.svg" alt="Olsenbygg (konseptlogo) – til forsiden" width="180" height="46"></a><ul id="meny"><li><a href="./">Forside</a></li><li><a href="scifi-lab.html">Sci-Fi Lab</a></li><li><a href="./#kontakt">Kontakt</a></li></ul></div></header><main id="main" class="tool"><section><div class="wrap">
 <span class="kicker">INTERNT · EKSEMPELDATA</span><h1>Materiallogg</h1>
-<p class="ex">EKSEMPELDATA – lagres kun i denne nettleseren (localStorage). Ikke koblet til Olsenbyggs systemer.</p>
-<h2>Lager</h2><table id="lager"></table>
-<form id="nymat" class="grid g3" style="margin:12px 0"><input name="navn" placeholder="Materiale" required><input name="lager" type="number" placeholder="På lager" required><input name="enhet" placeholder="Enhet (m², stk …)" required><input name="min" type="number" placeholder="Minimum"><button class="btn">Legg til</button></form>
-<h2>Bestillinger</h2><table id="best"></table>
-<h2>KI-forslag til mengder</h2><p>Regelbasert forslag ut fra areal (svinn inkludert). Kan kobles til språkmodell via proxy senere.</p>
-<div class="grid g3"><label>Areal m²<input id="fa" type="number" value="60"></label><label>Type<select id="ft"></select></label><div><button class="btn" id="fbtn">Foreslå</button></div></div>
-<p id="fres" aria-live="polite"></p>
-<button class="btn ghost" id="reset">Tilbakestill eksempeldata</button>
+<p><span class="ex">EKSEMPELDATA</span> Lagres kun i denne nettleseren (localStorage). Ikke koblet til Olsenbyggs systemer. Alle tall er oppdiktede eksempler.</p>
+<div class="stats" id="kpi" aria-live="polite"></div>
+<div class="card pad" style="margin-top:22px"><div class="tbar2"><h2 style="margin:0">Lager</h2><input id="sok" type="search" placeholder="Søk materiale eller prosjekt …" aria-label="Søk i lager"><label class="inl"><input type="checkbox" id="bareLav"> Bare under minimum</label></div>
+<div class="scroll"><table id="lager"></table></div>
+<form id="nymat" class="fgrid5"><input name="navn" placeholder="Materiale" required aria-label="Materiale"><input name="lager" type="number" min="0" placeholder="På lager" required aria-label="På lager"><input name="enhet" placeholder="Enhet" required aria-label="Enhet"><input name="min" type="number" min="0" placeholder="Minimum" aria-label="Minimum"><input name="prosjekt" placeholder="Prosjekt (valgfritt)" aria-label="Prosjekt"><button class="btn">Legg til</button></form></div>
+<div class="card pad" style="margin-top:22px"><h2>Bestillinger</h2><div class="scroll"><table id="best"></table></div></div>
+<div class="grid g2" style="margin-top:22px">
+<div class="card pad"><h2>KI-forslag til mengder</h2><p>Regelbasert forslag ut fra areal/lengde med svinn. Kan senere kobles til språkmodell via proxy.</p>
+<div class="fgrid2"><label>Areal / lengde<input id="fa" type="number" value="60"></label><label>Materiale<select id="ft"></select></label></div>
+<button class="btn" id="fbtn">Foreslå</button><div id="fres" aria-live="polite"></div></div>
+<div class="card pad"><h2>Historikk</h2><ol id="hist" class="hist"></ol></div></div>
+<p style="margin-top:22px"><button class="btn alt" id="csv">Eksporter CSV</button> <button class="btn ghost" id="reset">Tilbakestill eksempeldata</button></p>
 </div></section></main><script src="js/data.js" defer></script><script src="js/materialer.js" defer></script></body></html>
